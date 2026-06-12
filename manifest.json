@@ -1,0 +1,20 @@
+{
+  "name": "FitLife | Entrenamiento y Nutrición",
+  "short_name": "FitLife",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#081624",
+  "theme_color": "#081624",
+  "icons": [
+    {
+      "src": "fynn@.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "fynn@.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

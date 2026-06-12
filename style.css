@@ -1,0 +1,311 @@
+/* =========================
+   RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#d9ecff;
+    color:#081624;
+    line-height:1.6;
+}
+
+main{
+    max-width:1400px;
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+header{
+    background:#081624;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    position:relative;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    color:white;
+    text-decoration:none;
+}
+
+/* NAV DESKTOP */
+nav#menu{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#34d16f;
+}
+
+/* =========================
+   BOTÓN MENÚ MÓVIL
+========================= */
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:32px;
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+    margin:20px;
+    padding:80px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#081624,#0d2338);
+    color:white;
+}
+
+.hero-content{
+    max-width:500px;
+}
+
+.hero h1{
+    font-size:50px;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#34d16f;
+}
+
+.hero p{
+    margin-bottom:25px;
+}
+
+.hero-image img{
+    max-width:420px;
+    width:100%;
+    filter:drop-shadow(0 15px 30px rgba(0,0,0,.25));
+}
+
+/* =========================
+   BOTÓN
+========================= */
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:13px 28px;
+    background:#34d16f;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(52,209,111,.3);
+}
+
+.btn:active{
+    transform:translateY(-1px);
+}
+
+/* =========================
+   IMAGEN ENTRENAMIENTO
+========================= */
+.training-image{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.training-image img{
+    max-width:1200px;
+    width:100%;
+    border-radius:20px;
+}
+
+/* =========================
+   STATS
+========================= */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:0 20px 40px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    font-size:36px;
+    color:#34d16f;
+}
+
+/* =========================
+   NUTRICIÓN
+========================= */
+.nutrition{
+    margin:20px;
+    padding:50px;
+    background:white;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.nutrition h2{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.nutrition p{
+    max-width:700px;
+    margin:auto;
+}
+
+/* =========================
+   FEATURES
+========================= */
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+.features article{
+    background:#081624;
+    color:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.features article:hover{
+    transform:translateY(-5px);
+}
+
+.features h3{
+    color:#34d16f;
+    margin-bottom:15px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+    background:#081624;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+/* =========================
+   MENÚ MÓVIL (IMPORTANTE)
+========================= */
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    nav#menu{
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:#081624;
+
+        flex-direction:column;
+        padding:20px 0;
+        gap:20px;
+        text-align:center;
+
+        opacity:0;
+        transform:translateY(-10px);
+        pointer-events:none;
+        transition:.25s ease;
+        z-index:1000;
+    }
+
+    nav#menu.active{
+        opacity:1;
+        transform:translateY(0);
+        pointer-events:auto;
+    }
+
+    nav a.active{
+        color:#34d16f;
+        font-weight:600;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:50px 25px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   MOBILE PEQUEÑO
+========================= */
+@media (max-width:600px){
+
+    header{
+        padding:20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .nutrition{
+        padding:30px 20px;
+    }
+}
