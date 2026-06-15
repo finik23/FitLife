@@ -1,5 +1,6 @@
+
 /* =========================
-   RESET
+   BASE
 ========================= */
 
 * {
@@ -12,101 +13,73 @@ body {
     font-family: 'Poppins', sans-serif;
     background: #d9ecff;
     color: #081624;
-    line-height: 1.6;
+    line-height: 1.5;
+    overflow-x: hidden;
 }
 
 main {
-    max-width: 1400px;
-    margin: auto;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 14px;
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
 header {
-    background: #081624;
+    background: #000;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    position: relative;
+    padding: 12px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,.25);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
+.logo img {
+    height: 65px;
 }
-
-.logo img{
-    height: 90px;
-    width: auto;
-    transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-    transform: scale(1.05);
-}
-
-
-/* NAV */
 
 nav#menu {
     display: flex;
-    align-items: center;
-    gap: 25px;
+    gap: 18px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    transition: .3s;
+    font-size: 14px;
 }
-
-nav a:hover {
-    color: #34d16f;
-}
-
-
-/* MENU MOBILE */
 
 .menu-toggle {
     display: none;
     background: none;
     border: none;
     color: white;
-    font-size: 32px;
-    cursor: pointer;
+    font-size: 30px;
 }
 
-
 /* =========================
-   HERO
+   HERO (CORRECTO DE VERDAD)
 ========================= */
 
 .hero {
-    margin: 20px;
-    padding: 80px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    border-radius: 20px;
+    margin: 12px 0;
+    padding: 50px 18px;
     background: #000;
     color: white;
-}
-
-.hero-content {
-    max-width: 500px;
+    border-radius: 18px;
+    text-align: center;
 }
 
 .hero h1 {
-    font-size: 50px;
+    font-size: 32px;
     line-height: 1.1;
-    margin-bottom: 20px;
 }
 
 .hero h1 span {
@@ -114,106 +87,47 @@ nav a:hover {
 }
 
 .hero p {
-    margin-bottom: 25px;
+    font-size: 14px;
+    margin-top: 10px;
 }
-
-.hero-image img {
-    max-width: 420px;
-    width: 100%;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,.25));
-}
-
 
 /* =========================
-   BUTTON
+   BOTONES
 ========================= */
 
 .btn {
     display: inline-block;
-    padding: 13px 28px;
+    padding: 11px 18px;
     background: #34d16f;
     color: white;
     text-decoration: none;
     border-radius: 10px;
-    font-weight: 600;
-    transition: .3s;
+    font-size: 14px;
 }
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(52,209,111,.3);
-}
-
 
 /* =========================
-   TRAINING IMAGE
-========================= */
-
-.training-image {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.training-image img {
-    max-width: 1200px;
-    width: 100%;
-    border-radius: 20px;
-}
-
-
-/* =========================
-   STATS
+   STATS (FIX REAL)
 ========================= */
 
 .stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 0 20px 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0 30px;
 }
 
 .card {
     background: white;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 16px;
+    border-radius: 14px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    transition: .3s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
 .card h3 {
-    font-size: 36px;
+    font-size: 22px;
     color: #34d16f;
 }
-
-
-/* =========================
-   NUTRICIÓN
-========================= */
-
-.nutrition {
-    margin: 20px;
-    padding: 50px;
-    background: white;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
-}
-
-.nutrition h2 {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
-.nutrition p {
-    max-width: 700px;
-    margin: auto;
-}
-
 
 /* =========================
    FEATURES
@@ -221,48 +135,99 @@ nav a:hover {
 
 .features {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 15px 0;
 }
 
 .features article {
-    background: #081624;
+    background: #000;
     color: white;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 18px;
+    border-radius: 14px;
     text-align: center;
-    transition: .3s;
 }
 
-.features article:hover {
-    transform: translateY(-5px);
+/* =========================
+   NUTRICIÓN
+========================= */
+
+.nutrition {
+    margin: 15px 0;
+    padding: 25px 15px;
+    background: white;
+    border-radius: 18px;
+    text-align: center;
 }
 
-.features h3 {
-    color: #34d16f;
-    margin-bottom: 15px;
+/* =========================
+   CALCULADORA
+========================= */
+
+.calculadoras {
+    padding: 25px 12px;
+    text-align: center;
 }
 
+.calculator-box {
+    max-width: 520px;
+    margin: auto;
+    background: white;
+    padding: 18px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calculator-box input,
+.calculator-box select {
+    padding: 11px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
 
 /* =========================
    FOOTER
 ========================= */
 
 footer {
-    background: #081624;
+    background: #000;
     color: white;
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    padding: 15px;
+    margin-top: 30px;
 }
 
-
 /* =========================
-   MOBILE
+   TABLET
 ========================= */
 
-@media (max-width: 768px) {
+@media (min-width: 700px) {
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    nav a {
+        font-size: 15px;
+    }
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+@media (max-width: 700px) {
 
     .menu-toggle {
         display: block;
@@ -273,17 +238,15 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        background: #081624;
-
+        background: #000;
         flex-direction: column;
-        padding: 20px 0;
-        gap: 20px;
-        text-align: center;
+        padding: 15px;
+        gap: 12px;
 
         opacity: 0;
         transform: translateY(-10px);
         pointer-events: none;
-        transition: .25s ease;
+        transition: .25s;
     }
 
     nav#menu.active {
@@ -291,133 +254,5 @@ footer {
         transform: translateY(0);
         pointer-events: auto;
     }
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 50px 25px;
-    }
-
-    .hero h1 {
-        font-size: 40px;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-    }
 }
 
-@media (max-width: 600px) {
-
-    header {
-        padding: 20px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .nutrition {
-        padding: 30px 20px;
-    }
-}
-
-
-/* =========================
-   CALCULADORA (VERSIÓN LIMPIA Y COHERENTE)
-========================= */
-
-.calculadoras {
-    margin: 20px;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.calculadoras h2 {
-    font-size: 35px;
-    margin-bottom: 10px;
-}
-
-.calculadoras p {
-    max-width: 700px;
-    margin: 0 auto 30px;
-    opacity: 0.8;
-}
-
-
-/* TARJETA */
-.calculator-box {
-    max-width: 650px;
-    margin: auto;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
-
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-
-/* INPUTS */
-.calculator-box label {
-    text-align: left;
-    font-weight: 600;
-}
-
-.calculator-box input,
-.calculator-box select {
-    padding: 12px 14px;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-}
-
-.calculator-box input:focus,
-.calculator-box select:focus {
-    outline: none;
-    border-color: #34d16f;
-    box-shadow: 0 0 0 3px rgba(52,209,111,.15);
-}
-
-
-/* BOTONES */
-.calculator-box .btn {
-    width: 100%;
-}
-
-.reset {
-    background: #e74c3c;
-}
-
-.reset:hover {
-    box-shadow: 0 8px 20px rgba(231,76,60,.25);
-}
-
-
-/* RESULTADO */
-#resultado {
-    background: #f8f9fb;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-#resultado h3 {
-    color: #34d16f;
-}
-
-
-/* RESPONSIVE CALCULADORA */
-@media (max-width: 768px) {
-
-    .calculator-box {
-        padding: 25px;
-    }
-}
