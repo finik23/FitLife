@@ -1,4 +1,3 @@
-
 /* =========================
    BASE
 ========================= */
@@ -25,6 +24,16 @@ main {
 }
 
 /* =========================
+   IMÁGENES (CLAVE GLOBAL)
+========================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================
    HEADER
 ========================= */
 
@@ -48,12 +57,18 @@ header {
 nav#menu {
     display: flex;
     gap: 18px;
+    align-items: center;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #34d16f;
 }
 
 .menu-toggle {
@@ -62,10 +77,11 @@ nav a {
     border: none;
     color: white;
     font-size: 30px;
+    cursor: pointer;
 }
 
 /* =========================
-   HERO (CORRECTO DE VERDAD)
+   HERO (ESTABLE PC + MOBILE)
 ========================= */
 
 .hero {
@@ -74,11 +90,39 @@ nav a {
     background: #000;
     color: white;
     border-radius: 18px;
-    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
 }
 
+.hero-content {
+    flex: 1;
+    min-width: 260px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🔥 CONTROL REAL DE IMAGEN */
+.hero-image img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* =========================
+   TEXTO HERO
+========================= */
+
 .hero h1 {
-    font-size: 32px;
+    font-size: 34px;
     line-height: 1.1;
 }
 
@@ -103,15 +147,21 @@ nav a {
     text-decoration: none;
     border-radius: 10px;
     font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(52,209,111,.3);
 }
 
 /* =========================
-   STATS (FIX REAL)
+   STATS
 ========================= */
 
 .stats {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 12px;
     margin: 16px 0 30px;
 }
@@ -135,7 +185,7 @@ nav a {
 
 .features {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 12px;
     margin: 15px 0;
 }
@@ -201,30 +251,7 @@ footer {
 }
 
 /* =========================
-   TABLET
-========================= */
-
-@media (min-width: 700px) {
-
-    .hero h1 {
-        font-size: 42px;
-    }
-
-    .stats {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .features {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    nav a {
-        font-size: 15px;
-    }
-}
-
-/* =========================
-   MOBILE MENU
+   MOBILE
 ========================= */
 
 @media (max-width: 700px) {
@@ -246,7 +273,7 @@ footer {
         opacity: 0;
         transform: translateY(-10px);
         pointer-events: none;
-        transition: .25s;
+        transition: 0.25s;
     }
 
     nav#menu.active {
@@ -254,5 +281,17 @@ footer {
         transform: translateY(0);
         pointer-events: auto;
     }
-}
 
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero-image img {
+        max-width: 220px;
+    }
+}
