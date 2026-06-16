@@ -152,9 +152,9 @@ function calcularFitness() {
     let ajusteTexto = "";
 
     if (objetivo === "perder") {
-        ajusteTexto = "Déficit calórico (-500 kcal aprox.)";
+        ajusteTexto = "Déficit calórico";
     } else if (objetivo === "ganar") {
-        ajusteTexto = "Superávit calórico (+300 kcal aprox.)";
+        ajusteTexto = "Superávit calórico";
     } else {
         ajusteTexto = "Mantenimiento calórico";
     }
@@ -180,6 +180,17 @@ function calcularFitness() {
     if (objetivo === "ganar") caloriasObjetivo += 300;
 
 
+    const datosUsuario = {
+    edad: edad,
+    peso: peso,
+    altura: altura,
+    actividad: actividad,
+    objetivo: objetivo
+};
+
+localStorage.setItem("fitlifeUser", JSON.stringify(datosUsuario));
+
+
     // =========================
     // LOCALSTORAGE
     // =========================
@@ -189,6 +200,8 @@ function calcularFitness() {
     localStorage.setItem("ajuste", caloriasObjetivo - mantenimiento);
     localStorage.setItem("actividadTexto", actividadTexto);
     localStorage.setItem("ajusteTexto", ajusteTexto);
+    localStorage.setItem("objetivoFitLife", "perder");
+    
 
 
     // =========================
@@ -249,6 +262,182 @@ function cargarStats() {
 
 // cargar stats al entrar en index
 document.addEventListener("DOMContentLoaded", cargarStats);
+document.addEventListener("DOMContentLoaded", dibujarGraficaPeso);
 
 // actualizar si cambia otra pestaña
 window.addEventListener("storage", cargarStats);
+
+
+document.addEventListener("DOMContentLoaded", mostrarHistorialPeso);
+
+function mostrarHistorialPeso(){
+
+const contenedor = document.getElementById("pesoHistorialLista");
+if(!contenedor) return;
+
+let historial = JSON.parse(localStorage.getItem("pesoHistorial")) || [];
+
+if(historial.length === 0){
+    contenedor.innerHTML = "<p>No hay registros aún</p>";
+    return;
+}
+
+contenedor.innerHTML = historial.map(item => `
+    <div class="history-item">
+        <span>${item.fecha}</span>
+        <strong>${item.peso} kg</strong>
+    </div>
+`).join("");
+
+}
+
+// =========================
+// GUARDAR PROGRESO
+// =========================
+function guardarProgreso() {
+
+    let datos = {
+        peso: document.getElementById("peso")?.value || "",
+        calorias: document.getElementById("calorias")?.value || "",
+        pasos: document.getElementById("pasos")?.value || "",
+        sueno: document.getElementById("sueno")?.value || ""
+    };
+
+    // guardar progreso general
+    localStorage.setItem("progresoFitLife", JSON.stringify(datos));
+
+    dibujarGraficaPeso();
+
+    // =========================
+    // HISTORIAL DE PESO
+    // =========================
+    let historial = JSON.parse(localStorage.getItem("pesoHistorial")) || [];
+
+    if (datos.peso !== "") {
+        historial.push({
+            fecha: new Date().toISOString().split("T")[0],
+            peso: parseFloat(datos.peso)
+        });
+    }
+
+    localStorage.setItem("pesoHistorial", JSON.stringify(historial));
+
+    mostrarProgreso();
+    mostrarHistorialPeso();
+
+    alert("Progreso guardado correctamente");
+}
+
+
+// =========================
+// MOSTRAR PROGRESO
+// =========================
+function mostrarProgreso() {
+
+    let datos = JSON.parse(localStorage.getItem("progresoFitLife"));
+
+    if (!datos) return;
+
+    if (document.getElementById("pesoActual"))
+        document.getElementById("pesoActual").textContent = datos.peso + " kg";
+
+    if (document.getElementById("caloriasActual"))
+        document.getElementById("caloriasActual").textContent = datos.calorias;
+
+    if (document.getElementById("pasosActual"))
+        document.getElementById("pasosActual").textContent = datos.pasos;
+
+    if (document.getElementById("suenoActual"))
+        document.getElementById("suenoActual").textContent = datos.sueno + " h";
+}
+
+
+// =========================
+// MOSTRAR HISTORIAL
+// =========================
+function mostrarHistorialPeso() {
+
+    const contenedor = document.getElementById("pesoHistorialLista");
+    if (!contenedor) return;
+
+    let historial = JSON.parse(localStorage.getItem("pesoHistorial")) || [];
+
+    if (historial.length === 0) {
+        contenedor.innerHTML = "<p>No hay registros aún</p>";
+        return;
+    }
+
+    contenedor.innerHTML = historial.map(item => `
+        <div class="history-item">
+            <span>${item.fecha}</span>
+            <strong>${item.peso} kg</strong>
+        </div>
+    `).join("");
+}
+
+
+// =========================
+// REINICIAR SOLO PESO
+// =========================
+function resetPesoHistorial() {
+
+    localStorage.removeItem("pesoHistorial");
+
+    const contenedor = document.getElementById("pesoHistorialLista");
+    if (contenedor) {
+        contenedor.innerHTML = "<p>No hay registros aún</p>";
+    }
+
+    dibujarGraficaPeso();
+
+    alert("Historial de peso reiniciado");
+}
+
+
+function dibujarGraficaPeso() {
+
+    const contenedor = document.getElementById("chartPeso");
+    if (!contenedor) return;
+
+    let historial = JSON.parse(localStorage.getItem("pesoHistorial")) || [];
+
+    if (historial.length === 0) {
+        contenedor.innerHTML = "<p>No hay datos para mostrar</p>";
+        return;
+    }
+
+    // ordenar por fecha
+    historial.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+
+    const labels = historial.map(item => item.fecha);
+    const pesos = historial.map(item => item.peso);
+
+    contenedor.innerHTML = `
+        <canvas id="pesoChart"></canvas>
+    `;
+
+    const ctx = document.getElementById("pesoChart").getContext("2d");
+
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Evolución del peso (kg)",
+                data: pesos,
+                borderColor: "#34d16f",
+                backgroundColor: "rgba(52,209,111,0.2)",
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+}
