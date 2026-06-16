@@ -143,16 +143,12 @@ flex-wrap:wrap;
 
 }
 
-
-
 .diet{
 
 padding:80px 20px;
 text-align:center;
 
 }
-
-
 
 .diet-grid{
 
@@ -163,8 +159,6 @@ margin-top:40px;
 
 }
 
-
-
 .diet article{
 
 background:#102235;
@@ -172,8 +166,6 @@ padding:30px;
 border-radius:20px;
 
 }
-
-
 
 .diet h3{
 
@@ -208,7 +200,7 @@ grid-template-columns:1fr;
 .diet,
 .diet h2,
 .diet h3,
-.diet p{
+.diet {
 
     color:white;
 
